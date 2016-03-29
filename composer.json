@@ -1,6 +1,6 @@
 {
     "name": "mfrascati/cakephp-version",
-    "description": "Versions plugin for CakePHP",
+    "description": "Entity versioning plugin for CakePHP",
     "type": "cakephp-plugin",
     "require": {
         "php": ">=5.4.16",
