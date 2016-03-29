@@ -4,20 +4,20 @@
     "type": "cakephp-plugin",
     "require": {
         "php": ">=5.4.16",
-        "cakephp/cakephp": "~3.0"
+        "cakephp/orm": "~3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
     },
     "autoload": {
         "psr-4": {
-            "Entheos\\Version\\": "src",
-            "Entheos\\Version\\Test\\Fixture\\": "tests\\Fixture"
+            "Entheos\\Versions\\": "src",
+            "Entheos\\Versions\\Test\\Fixture\\": "tests\\Fixture"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Entheos\\Version\\Test\\": "tests"
+            "Entheos\\Versions\\Test\\": "tests"
         }
     }
 }
