@@ -3,6 +3,13 @@
 
 A CakePHP 3.x plugin that facilitates versioned database entities (a customized fork of josegonzalez/cakephp-version)
 
+The puropose of this plugin is to make possibile to track version of a record, making possibile to access the previous states. For example, let's say you make Invoices for a Client. Then the Client changes city he lives, and you make another Invoice. Without versioning you can lose the original city information (unless you duplicate the full record in you DB).
+
+The main differences from the original plugin are:
+- instead saving a record per modified fields it saves a single json encoded string for all the fields
+- you need to explicitly set the monitored fields, instead of versioning every field of the entity
+- you can set a time window in which additional changes to the record are considered as corrections and not a new version, so the last version is updated (TO DO)
+
 ## Installation
 
 Add the following lines to your application's `composer.json`:
