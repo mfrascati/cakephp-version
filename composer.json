@@ -11,13 +11,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Versions\\": "src"
+            "Entheos\\Version\\": "src",
+            "Entheos\\Version\\Test\\Fixture\\": "tests\\Fixture"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Versions\\Test\\": "tests",
-            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+            "Entheos\\Version\\Test\\": "tests"
         }
     }
 }
