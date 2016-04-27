@@ -43,7 +43,7 @@ Run the following schema migration:
 ```sql
 CREATE TABLE `versions` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
-    `version_id` int(11) unsigned DEFAULT NULL,
+    `version_id` int(11) unsigned DEFAULT '1',
     `model` varchar(255) NOT NULL,
     `foreign_key` int(10) unsigned NOT NULL,
     `content` text,
