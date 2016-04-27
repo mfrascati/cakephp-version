@@ -33,7 +33,7 @@ Or run the following command directly without changing your `composer.json`:
 In your app's `config/bootstrap.php` add:
 
 ```php
-Plugin::load('Versions');
+Plugin::load('Entheos/Versions');
 ```
 
 ## Usage
@@ -52,6 +52,10 @@ CREATE TABLE `versions` (
 ```
 
 > You also need to add a `version_id` field of type `integer` to the table which is being versioned. This will store the latest version number of a given record.
+
+```
+->addColumn('version_id', 'integer', ['default' => 1, 'signed' => false, 'null' => true, 'after' => 'id' ])
+```
 
 Add the following line to your entities:
 

@@ -129,6 +129,8 @@ class VersionBehavior extends Behavior
             foreach($values as $field=>&$value)
             {
                 $columnType = $this->_table->schema()->columnType($field);
+                if(gettype($value) == 'string')
+                    continue;
                 if($columnType == 'datetime')
                     $value = $value->format('Y-m-d H:i:s');
                 elseif($columnType == 'date')
