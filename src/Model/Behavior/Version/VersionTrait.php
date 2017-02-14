@@ -47,7 +47,7 @@ trait VersionTrait
         $table = TableRegistry::get('versions');
 
         $entities = $table->find('all')
-            ->where(['foreign_key' => $this->id, 'model' => $this->source()])
+            ->where(['foreign_key' => $this->id, 'model' => $this->getSource()])
             ->select(['id', 'version_id', 'content'])
             ->order(['id' => 'DESC'])
             ->formatResults([$this, 'processVersions'])
@@ -70,11 +70,11 @@ trait VersionTrait
         return $results->map(function ($row) {
             $row['content'] = json_decode($row['content']);
 
-            $table = TableRegistry::get($this->source());
+            $table = TableRegistry::get($this->getSource());
 
             foreach($row['content'] as $field=>&$value)
             {
-                $columnType = $table->schema()->columnType($field);
+                $columnType = $table->getSchema()->columnType($field);
                 $converter = Type::build($columnType);
                 $value = $converter->marshal($value);
             }
