@@ -75,6 +75,13 @@ trait VersionTrait
             foreach($row['content'] as $field=>&$value)
             {
                 $columnType = $table->getSchema()->columnType($field);
+
+                if(empty($columnType)){
+                    // throw new \Cake\Core\Exception\Exception("Version Plugin: Non trovo il campo $field su DB");
+                    \Cake\Log\Log::write('debug', "Version Plugin: Previously serialized field '$field' doesn't exist in DB");
+                    continue;
+                }
+
                 $converter = Type::build($columnType);
                 $value = $converter->marshal($value);
             }
