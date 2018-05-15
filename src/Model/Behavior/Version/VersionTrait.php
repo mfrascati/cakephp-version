@@ -74,7 +74,7 @@ trait VersionTrait
 
             foreach($row['content'] as $field=>&$value)
             {
-                $columnType = $table->getSchema()->columnType($field);
+                $columnType = $table->getSchema()->getColumnType($field);
 
                 if(empty($columnType)){
                     // throw new \Cake\Core\Exception\Exception("Version Plugin: Non trovo il campo $field su DB");
