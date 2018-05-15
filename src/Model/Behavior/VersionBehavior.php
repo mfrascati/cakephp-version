@@ -58,7 +58,7 @@ class VersionBehavior extends Behavior
      */
     public function initialize(array $config)
     {
-        $config = $this->config();
+        $config = $this->getConfig();
         if(empty($config['fields']))
             throw new \Exception("No fields specified for versioning");
             
@@ -81,7 +81,7 @@ class VersionBehavior extends Behavior
         $this->_table->hasMany($table, [
             'foreignKey' => 'foreign_key',
             'strategy' => 'subquery',
-            'conditions' => ["$table.model" => $this->_table->alias()],
+            'conditions' => ["$table.model" => $this->_table->getAlias()],
             'propertyName' => '__version',
             'dependent' => true
         ]);
@@ -105,8 +105,8 @@ class VersionBehavior extends Behavior
         $fields = $this->_fields();
         $values = $entity->extract($fields);
 
-        $model = $this->_table->alias();
-        $primaryKey = $this->_table->primaryKey();
+        $model = $this->_table->getAlias();
+        $primaryKey = $this->_table->getPrimaryKey();
         $foreignKey = $entity->get($primaryKey);
         $versionField = $this->_config['versionField'];
 
@@ -119,7 +119,7 @@ class VersionBehavior extends Behavior
                 ->where(['model' => $model, 'foreign_key' => $foreignKey])
                 ->order(['id desc'])
                 ->limit(1)
-                ->hydrate(false)
+                ->enableHydration(false)
                 ->toArray();
 
             $versionId = Hash::get($preexistent, '0.version_id', 0) + 1;
@@ -128,7 +128,7 @@ class VersionBehavior extends Behavior
 
             foreach($values as $field=>&$value)
             {
-                $columnType = $this->_table->schema()->columnType($field);
+                $columnType = $this->_table->getSchema()->getColumnType($field);
                 if(gettype($value) == 'string')
                     continue;
                 if($columnType == 'datetime')
@@ -173,7 +173,7 @@ class VersionBehavior extends Behavior
             $fields = $this->_fields();
             foreach($fields as $field)
             {
-                if($entity->dirty($field))
+                if($entity->isDirty($field))
                 {
                     return true;
                 }
